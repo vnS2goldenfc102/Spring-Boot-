@@ -1,27 +1,28 @@
 package com.example.demo.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "sinhvien")
+@NoArgsConstructor
+@Table(name = "sinh_vien")
 public class SinhVienEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
     @Column(name = "name")
-    private String Name;
+    private String name;
     @Column(name = "age")
-    private Integer Age;
+    private Integer age;
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_gv")
     private GiaoVienEntity giaovien;
-
 }

@@ -1,7 +1,9 @@
 package com.example.demo.model.in;
 
-import jakarta.persistence.Column;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Setter
 @Getter
@@ -9,6 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 public class GiaoVienIn {
     private Integer id_gv;
-    private String nameGv;
-    private Integer ageGv;
+    private String name_gv;
+    private Integer age_gv;
 }

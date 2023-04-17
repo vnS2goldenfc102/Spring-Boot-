@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.entity.SinhVienEntity;
 import com.example.demo.model.in.GiaoVienIn;
 import com.example.demo.model.in.SinhVienIn;
-import com.example.demo.service.GiaoVien.GiaoVienService;
+import com.example.demo.service.GiaoVienService;
+import com.example.demo.service.SinhVienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("giaovien")
+@RequestMapping("teacher")
 public class GiaoVienController {
     @Autowired
     GiaoVienService giaoVienService;
@@ -20,7 +20,7 @@ public class GiaoVienController {
     @PostMapping("")
     ResponseEntity<?> addGV(@RequestBody GiaoVienIn input) { return new ResponseEntity<>(giaoVienService.add(input), HttpStatus.OK);}
     @PutMapping("/{Id}")
-    ResponseEntity<?> updateGV(@RequestBody GiaoVienIn input, @PathVariable Integer Id){
+    ResponseEntity<?> updateGV(@RequestBody GiaoVienIn input,@PathVariable Integer Id) {
         return new ResponseEntity<>(giaoVienService.update(input, Id), HttpStatus.OK);
     }
     @DeleteMapping("/{Id}")

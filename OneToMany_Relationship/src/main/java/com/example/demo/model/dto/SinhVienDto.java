@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SinhVienDto {
     private Integer Id;
-    private String Name;
-    private Integer Age;
+    private String name;
+    private Integer age;
+
 }

@@ -1,9 +1,8 @@
-package com.example.demo.service.GiaoVien;
+package com.example.demo.service;
 
 import com.example.demo.model.in.GiaoVienIn;
-import com.example.demo.model.response.ResponseMessage;
-import com.example.demo.model.entity.GiaoVienEntity;
 import com.example.demo.model.in.SinhVienIn;
+import com.example.demo.model.response.ResponseMessage;
 import org.springframework.stereotype.Service;
 
 @Service
