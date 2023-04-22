@@ -16,4 +16,5 @@ public interface ILopHocService {
     ResponseMessage delete(Integer Id);
 //    ResponseMessage addSV(SinhVienIn input, Integer Id);
     ResponseMessage addSV(List<Integer> input, Integer Id);
+    ResponseMessage updateGV(Integer id_lop, Integer id_gv);
 }

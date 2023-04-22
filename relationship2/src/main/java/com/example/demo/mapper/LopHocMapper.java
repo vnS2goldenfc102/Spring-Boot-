@@ -7,6 +7,7 @@ import com.example.demo.model.entity.LopHocEntity;
 import com.example.demo.model.in.GiaoVienIn;
 import com.example.demo.model.in.LopHocIn;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class LopHocMapper {
@@ -20,6 +21,14 @@ public class LopHocMapper {
         lopHocDto.setId_lop(input.getId_lop());
         lopHocDto.setName(input.getName());
         lopHocDto.setSinhvien(input.getSinhvien().stream().map(SinhVienMapper::MapEntity).collect(Collectors.toList()));
+        if(input.getGiaovien() == null){
+            lopHocDto.setId_gv(null);
+            lopHocDto.setName_gv(null);
+        }else {
+            lopHocDto.setId_gv(input.getGiaovien().getId_gv());
+            lopHocDto.setName_gv(input.getGiaovien().getName_gv());
+        }
+
         return lopHocDto;
     }
 }

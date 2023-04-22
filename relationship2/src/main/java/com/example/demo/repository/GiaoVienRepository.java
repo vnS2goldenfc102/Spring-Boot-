@@ -15,14 +15,14 @@ public interface GiaoVienRepository extends JpaRepository<GiaoVienEntity, Intege
     List<GiaoVienEntity> getAll() ;
 
     @Modifying
-    @Query(value = "INSERT INTO giao_vien(name_gv, age_gv) VALUES (:name, :age)",nativeQuery = true)
+    @Query(value = "INSERT INTO giao_vien(name_gv, age_gv, id_lop) VALUES (:name, :age, :id_lop)",nativeQuery = true)
     @Transactional
-    void createTeacher(@Param("name") String name, @Param("age") Integer age);
+    void createTeacher(@Param("name") String name, @Param("age") Integer age, @Param("id_lop") Integer id_lop);
 
     @Modifying
-    @Query(value = "UPDATE giao_vien SET name_gv =:name, age_gv = :age WHERE id_gv = :id", nativeQuery = true)
+    @Query(value = "UPDATE giao_vien SET name_gv =:name, age_gv = :age, id_lop = :id_lop WHERE id_gv = :id", nativeQuery = true)
     @Transactional
-    void updateTeacher(@Param("name") String name, @Param("age") Integer age, @Param("id") Integer id);
+    void updateTeacher(@Param("name") String name, @Param("age") Integer age, @Param("id_lop") Integer id_lop, @Param("id") Integer id);
 
     @Modifying
     @Query(value = "DELETE FROM giao_vien WHERE id_gv = :id", nativeQuery = true)

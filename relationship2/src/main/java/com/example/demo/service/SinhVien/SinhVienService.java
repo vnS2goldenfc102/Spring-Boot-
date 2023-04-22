@@ -10,6 +10,7 @@ import com.example.demo.model.response.ResponseMessage;
 import com.example.demo.repository.GiaoVienRepository;
 import com.example.demo.repository.LopHocRepository;
 import com.example.demo.repository.SinhVienRepository;
+import com.example.demo.service.ConstantsService.ConstantsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,24 +36,32 @@ public class SinhVienService implements ISinhVienService {
 
     @Override
     public ResponseMessage add(SinhVienIn input) {
-        SinhVienEntity sinhVienEntity = SinhVienMapper.MapIn(input);
-        sinhVienRepository.createStudent(input.getStudent_code(), input.getName(), input.getAge(), input.getId_lop());
-//        sinhVienRepository.save(sinhVienEntity);
-        return new ResponseMessage("Add Success");
+       LopHocEntity lopHocEntity = lopHocRepository.getById(input.getId_lop());
+//       Khi add 1 sinh viên phải kiểm tra xem lớp đó đã đủ sinh viên chưa, nếu chưa thì mới cho add
+//        (update tương tự)
+       if(lopHocEntity.getSinhvien().size() < ConstantsService.MAX_STUDENT){
+           sinhVienRepository.createStudent(input.getStudent_code(), input.getName(), input.getAge(), input.getId_gv(), input.getId_lop());
+           return new ResponseMessage("Add Success");
+       }
+       else {
+           return new ResponseMessage("The number of students has exceeded " + ConstantsService.MAX_STUDENT);
+       }
     }
 
     @Override
     public ResponseMessage update(SinhVienIn input, Integer Id) {
-        SinhVienEntity sinhVienEntity = sinhVienRepository.getById(Id);
-//        GiaoVienEntity giaoVienEntity = giaoVienRepository.getById(input.getId_gv());
         LopHocEntity lopHocEntity = lopHocRepository.getById(input.getId_lop());
-        sinhVienEntity.setName(input.getName());
-        sinhVienEntity.setAge(input.getAge());
-//        sinhVienEntity.setGiaovien(giaoVienEntity);
-        sinhVienEntity.setLophoc(lopHocEntity);
-        sinhVienRepository.updateStudent(sinhVienEntity.getStudent_code(), sinhVienEntity.getName(), sinhVienEntity.getAge(), sinhVienEntity.getLophoc().getId_lop(), sinhVienEntity.getId());
-        return new ResponseMessage("Update Success");
-//        return null;
+        if (lopHocEntity.getSinhvien().size() < ConstantsService.MAX_STUDENT) {
+            SinhVienEntity sinhVienEntity = sinhVienRepository.getById(Id);
+            LopHocEntity lopHocEntity2 = lopHocRepository.getById(input.getId_lop());
+            sinhVienEntity.setName(input.getName());
+            sinhVienEntity.setAge(input.getAge());
+            sinhVienEntity.setLophoc(lopHocEntity2);
+            sinhVienRepository.updateStudent(sinhVienEntity.getStudent_code(), sinhVienEntity.getName(), sinhVienEntity.getAge(), input.getId_gv(), sinhVienEntity.getLophoc().getId_lop(), sinhVienEntity.getId());
+            return new ResponseMessage("Update Success");
+        }else {
+            return new ResponseMessage("The number of students has exceeded 3");
+        }
     }
 
     @Override

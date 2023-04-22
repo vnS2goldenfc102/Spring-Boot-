@@ -13,4 +13,5 @@ public class GiaoVienIn {
     private Integer id_gv;
     private String name_gv;
     private Integer age_gv;
+    private Integer id_lop;
 }

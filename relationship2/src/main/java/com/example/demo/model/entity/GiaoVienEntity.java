@@ -26,4 +26,15 @@ public class GiaoVienEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "giaovien", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<SinhVienEntity> sinhvien;
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_lop")
+    private LopHocEntity lophoc;
+//    @Override
+//    public String toString() {
+//        return "giaovien{" +
+//                "id_gv=" + id_gv +
+//                ", name_gv='" + name_gv + '\'' +
+//                "}";
+//    }
 }

@@ -22,6 +22,11 @@ public class GiaoVienMapper {
         giaoVienDto.setId_gv(input.getId_gv());
         giaoVienDto.setName_gv(input.getName_gv());
         giaoVienDto.setAge_gv(input.getAge_gv());
+        if(input.getLophoc() == null){
+            giaoVienDto.setId_lop(null);
+        } else {
+            giaoVienDto.setId_lop(input.getLophoc().getId_lop());
+        }
         giaoVienDto.setSinhvien(input.getSinhvien().stream().map(SinhVienMapper::MapEntity).collect(Collectors.toList()));
         return giaoVienDto;
     }

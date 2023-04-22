@@ -33,4 +33,8 @@ public class LopHocController {
 
     @PostMapping("/{Id}")
     ResponseEntity<?> addSV(@RequestBody List<Integer> input, @PathVariable Integer Id) { return new ResponseEntity<>(lopHocService.addSV(input, Id), HttpStatus.OK);}
+    @PutMapping("/update_gv")
+    ResponseEntity<?> updateGV(@RequestParam Integer id_lop, @RequestParam Integer id_gv) {
+        return new ResponseEntity<>(lopHocService.updateGV(id_lop, id_gv), HttpStatus.OK);
+    }
 }

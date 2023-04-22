@@ -12,6 +12,8 @@ import java.util.List;
 public class LopHocDto {
     private Integer id_lop;
     private String name;
+    private Integer id_gv;
+    private String name_gv;
     private List<SinhVienDto> sinhvien;
 
 }

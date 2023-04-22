@@ -22,5 +22,8 @@ public class LopHocEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "lophoc",cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<SinhVienEntity> sinhvien;
+    @JsonIgnore
+    @OneToOne(mappedBy = "lophoc", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private GiaoVienEntity giaovien;
 
 }
